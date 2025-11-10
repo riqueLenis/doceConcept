@@ -5,12 +5,11 @@
 }
 
 :root {
-  /* New neutral palette */
-  --color-bg: #f5f1ef; /* main background */
-  --color-surface: #ffffff; /* cards and modals */
-  --color-text: #333333; /* primary text */
-  --color-muted: #666666; /* secondary text */
-  --color-border: #e6ddd8; /* subtle borders */
+  --color-bg: #f5f1ef;
+  --color-surface: #ffffff;
+  --color-text: #333333;
+  --color-muted: #666666;
+  --color-border: #e6ddd8;
   --color-shadow: rgba(0, 0, 0, 0.1);
   --color-overlay: rgba(0, 0, 0, 0.5);
 }
@@ -83,7 +82,7 @@ nav {
 /* Hero Section */
 .hero {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("../assets/fundo.jpg")
+    url("assets/fundo.jpg")
       center/cover;
   height: 100vh;
   display: flex;
@@ -238,7 +237,7 @@ nav {
 }
 
 .checkout-btn {
-  background: #4caf50; /* kept success green for clarity */
+  background: #4caf50;
   color: #fff;
   border: none;
   padding: 1rem;

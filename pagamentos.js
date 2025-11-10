@@ -72,7 +72,7 @@ document
       );
       localStorage.removeItem("cart");
       localStorage.removeItem("cartTotal");
-      window.location.href = "obrigado.html"; // Ou redirecione para uma página de confirmação
+      window.location.href = "obrigado.html";
     }, 2000);
   });
 

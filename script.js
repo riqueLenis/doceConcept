@@ -1,35 +1,3 @@
-// ===== Produtos (dados simulados + localStorage) =====
-let products = JSON.parse(localStorage.getItem("products")) || [
-  {
-    id: 1,
-    imgs: ["https://via.placeholder.com/300x250/f5f1ef/333333?text=Vestido+Vermelho"],
-    title: "Vestido Vermelho",
-    desc: "Vestido elegante para ocasiões especiais.",
-    size: "M",
-    details: "Tecido leve, lavagem delicada.",
-    price: 129.99,
-  },
-  {
-    id: 2,
-    imgs: ["https://via.placeholder.com/300x250/f5f1ef/333333?text=Blusa+Azul"],
-    title: "Blusa Azul",
-    desc: "Blusa casual confortável.",
-    size: "P",
-    details: "Algodão 100%.",
-    price: 79.99,
-  },
-  {
-    id: 3,
-    imgs: ["https://via.placeholder.com/300x250/f5f1ef/333333?text=Saia+Floral"],
-    title: "Saia Floral",
-    desc: "Saia florida para o verão.",
-    size: "G",
-    details: "Estampa exclusiva, não usar alvejante.",
-    price: 89.99,
-  },
-];
-
-// Normalizar produtos legacy (converter img -> imgs)
 products = products.map((p) => {
   if (p.img && !p.imgs) {
     p.imgs = [p.img];
@@ -39,14 +7,12 @@ products = products.map((p) => {
 });
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-// Atualiza total persistido (usado pela página de pagamentos)
 function updateCartPersistence() {
   localStorage.setItem("cart", JSON.stringify(cart));
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   localStorage.setItem("cartTotal", String(total));
 }
 
-// ===== Render de produtos =====
 function renderProducts() {
   const grid = document.getElementById("products-grid");
   if (!grid) return;
@@ -122,7 +88,6 @@ function togglePayment() {
   if (payModal) payModal.style.display = "flex";
 }
 
-// Pagamento (simulado)
 const paymentForm = document.getElementById("payment-form");
 if (paymentForm) {
   paymentForm.addEventListener("submit", (e) => {
@@ -136,7 +101,6 @@ if (paymentForm) {
   });
 }
 
-// ===== Admin / Login =====
 function toggleLogin() {
   const loginModal = document.getElementById("login-modal");
   if (loginModal) loginModal.style.display = "flex";
@@ -171,7 +135,6 @@ if (adminForm) {
     const size = document.getElementById("product-size").value;
     const details = document.getElementById("product-details").value;
     const price = parseFloat(document.getElementById("product-price").value);
-    // Edição ou criação
     if (window.__editingProductId) {
       const prodIndex = products.findIndex(p => p.id === window.__editingProductId);
       if (prodIndex !== -1) {
@@ -184,13 +147,11 @@ if (adminForm) {
           };
           products[prodIndex] = updated;
           localStorage.setItem("products", JSON.stringify(products));
-          // Se o produto está no carrinho, atualizar título e preço
           cart = cart.map(item => item.id === updated.id ? { ...item, title: updated.title, price: updated.price } : item);
           updateCartPersistence();
           renderAdminProducts();
           renderProducts();
           adminForm.reset();
-          // Sair do modo edição
           window.__editingProductId = null;
           const submitBtn = document.getElementById('admin-submit');
           const cancelBtn = document.getElementById('admin-cancel');
@@ -198,7 +159,6 @@ if (adminForm) {
           if (cancelBtn) cancelBtn.style.display = 'none';
           showSuccess("Produto atualizado!");
         };
-        // Se novas imagens foram escolhidas, substitui; caso contrário mantém
         if (imageFiles.length) {
           const readers = Array.from(imageFiles).map(
             (file) =>
@@ -268,7 +228,6 @@ function removeProduct(id) {
   localStorage.setItem("products", JSON.stringify(products));
   renderAdminProducts();
   renderProducts();
-  // Remover também do carrinho, caso exista
   const before = cart.length;
   cart = cart.filter(item => item.id !== id);
   if (cart.length !== before) {
@@ -277,7 +236,6 @@ function removeProduct(id) {
   }
 }
 
-// ===== Utilidades =====
 function scrollToProducts() {
   const section = document.getElementById("products");
   if (section) section.scrollIntoView({ behavior: "smooth" });
@@ -290,7 +248,6 @@ function openWhatsApp() {
   );
 }
 
-// Modal de detalhes do produto
 function openProduct(id) {
   const product = products.find((p) => p.id === id);
   if (!product) return;
@@ -324,8 +281,6 @@ function closeProduct() {
 // Inicialização
 renderProducts();
 
-// ===== Navegação / Eventos extras =====
-// Abrir o carrinho ao clicar no link do menu
 const cartNavLink = document.querySelector('a[href="#cart"]');
 if (cartNavLink) {
   cartNavLink.addEventListener('click', (e) => {
@@ -334,7 +289,6 @@ if (cartNavLink) {
   });
 }
 
-// Modo edição: iniciar e cancelar
 function startEditProduct(id) {
   const p = products.find(prod => prod.id === id);
   if (!p) return;
@@ -351,7 +305,6 @@ function startEditProduct(id) {
     cancelBtn.style.display = 'inline-block';
     cancelBtn.onclick = cancelEdit;
   }
-  // Imagem: manter as atuais caso não selecione novas
   const imagesInput = document.getElementById('product-images');
   if (imagesInput) imagesInput.value = '';
   document.getElementById('admin-dashboard').scrollIntoView({behavior:'smooth'});
