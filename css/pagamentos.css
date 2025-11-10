@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+  color: var(--color-text, #333);
+  background: var(--color-bg, #f5f1ef);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.payment-container {
+  background: var(--color-surface, #ffffff);
+  padding: 2rem;
+  border-radius: 15px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 30px var(--color-shadow, rgba(0,0,0,0.2));
+}
+
+.payment-container h1 {
+  text-align: center;
+  color: var(--color-text, #333);
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.payment-container p {
+  text-align: center;
+  color: var(--color-muted, #666);
+  margin-bottom: 2rem;
+}
+
+.total-display {
+  background: var(--color-bg, #f5f1ef);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text, #333);
+  font-size: 1.2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--color-text, #333);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--color-border, #ddd);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--color-text, #333);
+}
+
+.pay-btn {
+  background: #4caf50; /* keep success button */
+  color: #fff;
+  border: none;
+  padding: 1.2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: transform 0.3s;
+  margin-top: 1rem;
+}
+
+.pay-btn:hover {
+  transform: scale(1.02);
+}
+
+.pay-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.security-note {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 1rem;
+}
+
+.back-btn {
+  background: var(--color-bg, #f5f1ef);
+  color: var(--color-text, #333);
+  border: 1px solid var(--color-border, #ddd);
+  padding: 0.8rem;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 600;
+  margin-top: 1rem;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+
+.loading {
+  display: none;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.loading i {
+  font-size: 1.5rem;
+  color: #4caf50;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Floating WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 100;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-icon {
+  margin-top: 16px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .payment-container {
+    padding: 1.5rem;
+  }
+}

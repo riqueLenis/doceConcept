@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doce Concept</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">Doce Concept</div>
+        <ul class="nav-links">
+          <li><a href="#home">Início</a></li>
+          <li><a href="#products">Produtos</a></li>
+          <li><a href="#cart">Carrinho</a></li>
+          <li><a href="pagamentos.html">Pagamento</a></li>
+        </ul>
+        <a href="#" class="login-btn" onclick="toggleLogin()">Admin Login</a>
+      </nav>
+    </header>
+
+    <section id="home" class="hero">
+      <div>
+        <h1>Bem-vinda à Elegância Feminina</h1>
+        <p>
+          Descubra as últimas tendências em roupas femininas com estilo e
+          conforto.
+        </p>
+        <button class="cta-btn" onclick="scrollToProducts()">
+          Ver Produtos
+        </button>
+      </div>
+    </section>
+
+    <section id="products" class="products">
+      <h2 class="section-title">Nossos Produtos</h2>
+      <div id="products-grid" class="products-grid"></div>
+      <div id="success-msg" class="success-msg"></div>
+    </section>
+
+    <div id="admin-dashboard" class="admin-dashboard">
+      <h2>Dashboard Admin</h2>
+      <form id="admin-form" class="admin-form">
+        <label for="product-images">Imagens do Produto</label>
+        <input type="file" id="product-images" accept="image/*" multiple required />
+        <small id="images-hint" style="display:block; margin: 0.5rem 0; color: var(--color-muted);">Selecione 1 ou mais imagens. Em modo edição, se não selecionar novas imagens, manteremos as atuais.</small>
+        <input
+          type="text"
+          id="product-title"
+          placeholder="Título do Produto"
+          required
+        />
+        <textarea id="product-desc" placeholder="Descrição" required></textarea>
+        <input type="text" id="product-size" placeholder="Tamanho (ex: P, M, G ou 36/38)" />
+        <textarea id="product-details" placeholder="Detalhes da peça (tecido, caimento, instruções de lavagem, etc.)"></textarea>
+        <input
+          type="number"
+          id="product-price"
+          placeholder="Preço (R$)"
+          step="0.01"
+          required
+        />
+        <div style="display:flex; gap: 0.5rem; flex-wrap: wrap;">
+          <button type="submit" id="admin-submit" class="add-product-btn">Adicionar Produto</button>
+          <button type="button" id="admin-cancel" class="add-product-btn" style="display:none; background: var(--color-bg); color: var(--color-text); border: 1px solid var(--color-border);">Cancelar</button>
+        </div>
+      </form>
+      <div id="admin-products" class="admin-products"></div>
+      <button
+        onclick="logout()"
+        class="add-product-btn"
+        style="background: var(--color-bg); color: var(--color-text); border: 1px solid var(--color-border); margin-top: 1rem"
+      >
+        Logout
+      </button>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="cart-modal">
+      <div class="cart-content">
+        <h3>Carrinho</h3>
+        <div id="cart-items"></div>
+        <div id="cart-total" class="total"></div>
+        <button class="checkout-btn" onclick="togglePayment()">Checkout</button>
+        <button
+          onclick="toggleCart()"
+          style="
+            background: var(--color-bg);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+            margin-top: 0.5rem;
+            width: 100%;
+            padding: 0.8rem;
+          "
+        >
+          Fechar
+        </button>
+      </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="payment-modal">
+      <div class="payment-content">
+        <h3>Pagamento</h3>
+        <form id="payment-form">
+          <div class="form-group">
+            <label>Número do Cartão</label>
+            <input type="text" placeholder="1234 5678 9012 3456" />
+          </div>
+          <div class="form-group">
+            <label>Validade</label>
+            <input type="text" placeholder="MM/AA" />
+          </div>
+          <div class="form-group">
+            <label>CVV</label>
+            <input type="text" placeholder="123" />
+          </div>
+          <div class="form-group">
+            <label>Nome no Cartão</label>
+            <input type="text" placeholder="Seu Nome" />
+          </div>
+          <button type="submit" class="pay-btn">Pagar Agora</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="login-modal">
+      <div class="login-content">
+        <h3>Login Admin</h3>
+        <input
+          type="password"
+          id="admin-password"
+          placeholder="Senha (padrão: admin123)"
+        />
+        <button class="admin-login" onclick="login()">Entrar</button>
+      </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="cart-modal" style="display:none;">
+      <div class="cart-content" id="product-modal-content">
+        <!-- Conteúdo preenchido via JS -->
+      </div>
+    </div>
+
+    <!-- Floating WhatsApp -->
+    <div class="whatsapp-float" onclick="openWhatsApp()">
+      <i class="fab fa-whatsapp whatsapp-icon"></i>
+    </div>
+    <script src="../js/script.js"></script>
+  </body>
+</html>
