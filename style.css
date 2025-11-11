@@ -428,3 +428,42 @@ nav {
   margin: 1rem 0;
   border-radius: 5px;
 }
+
+/* Footer */
+.site-footer {
+  margin-top: 4rem;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: 2rem 1rem;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-info h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.footer-info p {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  line-height: 1.4;
+}
+
+.maps-link {
+  color: var(--color-text);
+  text-decoration: underline;
+  transition: opacity .3s;
+}
+
+.maps-link:hover { opacity: .7; }
+
+@media (min-width: 640px) {
+  .footer-inner { flex-direction: row; justify-content: space-between; align-items: flex-start; }
+}
