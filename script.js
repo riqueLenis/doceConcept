@@ -1,3 +1,15 @@
+let products = JSON.parse(localStorage.getItem("products")) || [
+  {
+    id: 1,
+    imgs: ["https://via.placeholder.com/300x250/f5f1ef/333333?text=Vestido+Vermelho"],
+    desc: "Vestido elegante para ocasiões especiais.",
+    size: "M",
+    details: "Tecido leve, lavagem delicada.",
+    price: 129.99,
+  },
+];
+
+// Normalizar produtos legacy (converter img -> imgs)
 products = products.map((p) => {
   if (p.img && !p.imgs) {
     p.imgs = [p.img];
